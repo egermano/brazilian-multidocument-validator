@@ -1,0 +1,37 @@
+{
+  "name": "br-doc-validator",
+  "version": "1.0.0",
+  "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
+  "main": "index.js",
+  "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
+  "author": "Bruno Germano <bruno.germano@gmail.com>",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {},
+  "scripts": {
+    "build": "npx tsc -p ./tsconfig.json --declaration",
+    "test": "npx jest",
+    "start": "npx tsc -w -p ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.0",
+    "@types/node": "^8.0.47",
+    "jest": "^22.1.4",
+    "ts-jest": "^22.0.2",
+    "typescript": "^2.6.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

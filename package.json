@@ -4,6 +4,10 @@
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
   "main": "index.js",
   "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
+  "bugs": {
+    "url": "https://github.com/egermano/brazilian-multidocument-validator/issues"
+  },
+  "homepage": "https://github.com/egermano/brazilian-multidocument-validator#readme",
   "author": "Bruno Germano <bruno.germano@gmail.com>",
   "license": "Apache-2.0",
   "private": false,

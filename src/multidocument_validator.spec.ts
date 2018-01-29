@@ -1,4 +1,4 @@
-import { multidocumentValidatorHelper } from './multidocument_validator';
+import { documentValidatorProm } from './multidocument_validator';
 
 declare var jest, describe, it, expect;
 
@@ -47,7 +47,7 @@ describe("CPF/CNPJ validator", () => {
   DOCS.forEach((item) => {
     it(`should return \`${item.assert}\` for Document \`${item.document}\` `, () => {
 
-      return multidocumentValidatorHelper(item.document).then((result) => {
+      return documentValidatorProm(item.document).then((result) => {
         return expect(item.assert).toBe(true);
       }, (err) => {
         return expect(item.assert).toBe(false);

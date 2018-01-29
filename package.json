@@ -1,6 +1,6 @@
 {
   "name": "br-doc-validator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
   "main": "bin/multidocument_validator.js",
   "types": "bind/multidocument_validator.d.ts",

@@ -1,9 +1,9 @@
 {
   "name": "br-doc-validator",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
-  "main": "bin/multidocument_validator.js",
-  "types": "bind/multidocument_validator.d.ts",
+  "main": "./bin/multidocument_validator.js",
+  "types": "./bin/multidocument_validator.d.ts",
   "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
   "bugs": {
     "url": "https://github.com/egermano/brazilian-multidocument-validator/issues"
@@ -15,15 +15,18 @@
   "dependencies": {},
   "scripts": {
     "build": "npx tsc -p ./tsconfig.json --declaration",
+    "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
     "test": "npx jest",
     "start": "npx tsc -w -p ./tsconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^22.1.0",
     "@types/node": "^8.0.47",
-    "jest": "^22.1.4",
-    "ts-jest": "^22.0.2",
-    "typescript": "^2.6.1"
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.2",
+    "tslint": "^6.0.0",
+    "tslint-config-airbnb": "^5.11.2"
   },
   "jest": {
     "transform": {

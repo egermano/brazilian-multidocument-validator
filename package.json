@@ -15,6 +15,7 @@
   "dependencies": {},
   "scripts": {
     "build": "npx tsc -p ./tsconfig.json --declaration",
+    "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
     "test": "npx jest",
     "start": "npx tsc -w -p ./tsconfig.json"
   },

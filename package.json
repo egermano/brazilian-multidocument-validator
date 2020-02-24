@@ -1,6 +1,6 @@
 {
   "name": "br-doc-validator",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
   "main": "./bin/multidocument_validator.js",
   "types": "./bin/multidocument_validator.d.ts",
@@ -14,10 +14,10 @@
   "private": false,
   "dependencies": {},
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.json --declaration",
+    "build": "tsc -p ./tsconfig.json --declaration",
     "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
-    "test": "npx jest",
-    "start": "npx tsc -w -p ./tsconfig.json"
+    "test": "jest",
+    "start": "tsc -w -p ./tsconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^22.1.0",

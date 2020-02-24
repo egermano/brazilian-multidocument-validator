@@ -1,6 +1,6 @@
 {
   "name": "br-doc-validator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
   "main": "./bin/multidocument_validator.js",
   "types": "./bin/multidocument_validator.d.ts",
@@ -24,9 +24,9 @@
     "@types/node": "^8.0.47",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
-    "typescript": "^3.8.2",
     "tslint": "^6.0.0",
-    "tslint-config-airbnb": "^5.11.2"
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.2"
   },
   "jest": {
     "transform": {

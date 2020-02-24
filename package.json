@@ -1,9 +1,9 @@
 {
   "name": "br-doc-validator",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
-  "main": "bin/multidocument_validator.js",
-  "types": "bind/multidocument_validator.d.ts",
+  "main": "./bin/multidocument_validator.js",
+  "types": "./bin/multidocument_validator.d.ts",
   "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
   "bugs": {
     "url": "https://github.com/egermano/brazilian-multidocument-validator/issues"

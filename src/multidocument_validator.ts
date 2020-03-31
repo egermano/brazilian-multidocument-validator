@@ -125,17 +125,15 @@ export function cnpjValidator(input: string): Boolean {
   return true;
 }
 
-export function documentValidator(input: string): Boolean {
+export function documentValidator(input: string, promise: boolean = false): Boolean | Promise<String> {
   const doc = input.replace(/[^\d]+/g, '');
-
-  if (doc.length <= 11) {
-    return cpfValidator(doc);
+  if (promise) {
+    if (doc.length <= 11) {
+      return cpfValidator(doc);
+    }
+    return cnpjValidator(doc);
   }
-  return cnpjValidator(doc);
 
-}
-
-export function documentValidatorProm(input: string): Promise<String> {
   return new Promise((resolve, reject) => {
     if (documentValidator(input)) {
       resolve(input);
@@ -143,4 +141,5 @@ export function documentValidatorProm(input: string): Promise<String> {
       reject();
     }
   });
+
 }

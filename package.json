@@ -10,6 +10,7 @@
   },
   "homepage": "https://github.com/egermano/brazilian-multidocument-validator#readme",
   "author": "Bruno Germano <bruno.germano@gmail.com>",
+  "keywords": ["Brasil", "Validator", "Documents", "CPF", "CNPJ"],
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {},

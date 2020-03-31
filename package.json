@@ -15,10 +15,13 @@
   "private": false,
   "dependencies": {},
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.json --declaration",
+    "build": "tsc -p ./tsconfig.json --declaration",
     "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
-    "test": "npx jest",
-    "start": "npx tsc -w -p ./tsconfig.json"
+    "test": "jest",
+    "start": "tsc -w -p ./tsconfig.json",
+    "prepare": "$npm_execpath build",
+    "prepublishOnly": "$npm_execpath run lint && $npm_execpath test",
+    "preversion" : "$npm_execpath run lint"
   },
   "devDependencies": {
     "@types/jest": "^22.1.0",

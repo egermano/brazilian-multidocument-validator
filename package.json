@@ -1,33 +1,46 @@
 {
   "name": "br-doc-validator",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
-  "main": "./bin/multidocument_validator.js",
-  "types": "./bin/multidocument_validator.d.ts",
+  "main": "bin/multidocument_validator.js",
+  "types": "bin/multidocument_validator.d.ts",
   "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
   "bugs": {
     "url": "https://github.com/egermano/brazilian-multidocument-validator/issues"
   },
   "homepage": "https://github.com/egermano/brazilian-multidocument-validator#readme",
   "author": "Bruno Germano <bruno.germano@gmail.com>",
+  "keywords": [
+    "Brasil",
+    "Validator",
+    "Documents",
+    "CPF",
+    "CNPJ"
+  ],
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {},
   "scripts": {
-    "build": "npx tsc -p ./tsconfig.json --declaration",
+    "build": "tsc -p ./tsconfig.json --declaration",
     "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
-    "test": "npx jest",
-    "start": "npx tsc -w -p ./tsconfig.json"
+    "test": "jest",
+    "start": "tsc -w -p ./tsconfig.json",
+    "prepare": "$npm_execpath build",
+    "prepublishOnly": "$npm_execpath run lint && $npm_execpath test",
+    "preversion": "$npm_execpath run lint"
   },
   "devDependencies": {
     "@types/jest": "^22.1.0",
     "@types/node": "^8.0.47",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
-    "typescript": "^3.8.2",
     "tslint": "^6.0.0",
-    "tslint-config-airbnb": "^5.11.2"
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.2"
   },
+  "files": [
+    "bin/**/*"
+  ],
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

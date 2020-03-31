@@ -29,6 +29,7 @@
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2"
   },
+  "files": ["bin/**/*"],
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

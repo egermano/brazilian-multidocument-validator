@@ -55,30 +55,26 @@ export function cpfValidator(input: string): Boolean {
 
 }
 
-export function cnpjValidator(input: string): Boolean {
-  const cnpj = input.replace(/[^\d]+/g, '');
-
-  if (cnpj === '') {
-    return false;
-  }
-
-  if (cnpj.length !== 14) {
-    return false;
-  }
-
+const cnpjReplace = (input) => input.replace(/[^\d]+/g, '');
+const cnpjLengthValidation = (input) => input === '' && input.length === 14 ? input : false;
+const linha10 = (input) => {
   // LINHA 10 - Elimina CNPJs invalidos conhecidos
-  if (cnpj === '00000000000000' ||
-    cnpj === '11111111111111' ||
-    cnpj === '22222222222222' ||
-    cnpj === '33333333333333' ||
-    cnpj === '44444444444444' ||
-    cnpj === '55555555555555' ||
-    cnpj === '66666666666666' ||
-    cnpj === '77777777777777' ||
-    cnpj === '88888888888888' ||
-    cnpj === '99999999999999') {
-    return false;
+  const valid = Array(10).fill('').every((value, index) => {
+    const invalidCnpj = Array(14).fill('').map(c => index).join('');
+    return input !== invalidCnpj;
+  });
+
+  if (valid) {
+    return input;
   }
+
+  return false;
+}
+
+export function cnpjValidator(input: string): Boolean {
+  let cnpj = cnpjReplace(input);
+  cnpj = cnpjLengthValidation(cnpj);
+  cnpj = linha10(input);
 
   let tamanho: number = cnpj.length - 2;
   let numeros: string = cnpj.substring(0, tamanho);

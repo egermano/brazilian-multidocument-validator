@@ -55,8 +55,8 @@ export function cpfValidator(input: string): Boolean {
 
 }
 
-const cnpjReplace = (input) => input.replace(/[^\d]+/g, '');
-const cnpjLengthValidation = (input) => input === '' && input.length === 14 ? input : false;
+const cnpjReplace = input => input.replace(/[^\d]+/g, '');
+const cnpjLengthValidation = input => input === '' && input.length === 14 ? input : false;
 const linha10 = (input) => {
   // LINHA 10 - Elimina CNPJs invalidos conhecidos
   const valid = Array(10).fill('').every((value, index) => {
@@ -69,7 +69,7 @@ const linha10 = (input) => {
   }
 
   return false;
-}
+};
 
 export function cnpjValidator(input: string): Boolean {
   let cnpj = cnpjReplace(input);

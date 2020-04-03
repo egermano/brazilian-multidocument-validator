@@ -21,7 +21,7 @@ jobs:
       run: |
         yarn install
         yarn lint
-        yarn build --if-present
+        yarn build
         yarn test
       env:
         CI: true

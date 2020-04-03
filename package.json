@@ -29,9 +29,13 @@
     "prepublishOnly": "$npm_execpath run lint && $npm_execpath test",
     "preversion": "$npm_execpath run lint"
   },
+  "git": {
+    "pre-commit": "lint"
+  },
   "devDependencies": {
     "@types/jest": "^22.1.0",
     "@types/node": "^8.0.47",
+    "@zeit/git-hooks": "^0.1.4",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
     "tslint": "^6.0.0",

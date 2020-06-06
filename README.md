@@ -1,5 +1,5 @@
 # Brazilian Document Validator
-A Node.js module that validate Brazilians documents as CPF and CPNJ.
+A Node.js module that validate brazilian documents as CPF and CPNJ.
 
 [![Build Status](https://travis-ci.org/egermano/brazilian-multidocument-validator.svg?branch=master)](https://travis-ci.org/egermano/brazilian-multidocument-validator)
 

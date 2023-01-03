@@ -8,7 +8,8 @@ A Node.js module that validate brazilian documents as CPF and CPNJ.
 
 ## Installation 
 ```sh
-npm install br-doc-validator --save
+npm add br-doc-validator
+# or
 yarn add br-doc-validator
 ```
 
@@ -29,22 +30,7 @@ if(result) {
 Output should be 'valid'
 ```
 
-Async support
-```javascript
-const validator = require('br-doc-validator');
-const document = '00000000353';
-validator.documentValidator(document, true).then((result) => {
-    console.log('valid');
-}, (err) => {
-    console.log('invalid');
-});
-```
-```sh
-Output should be 'valid'
-```
-
 ## Test 
 ```sh
 npm run test
-yarn test
 ```

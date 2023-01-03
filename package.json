@@ -29,31 +29,19 @@
     "preversion": "npm run lint"
   },
   "devDependencies": {
-    "@types/jest": "^22.1.0",
-    "@types/node": "^8.0.47",
+    "@jest/globals": "^29.3.1",
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "eslint": "^8.31.0",
-    "jest": "^25.1.0",
-    "typescript": "^3.8.2"
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.9.4"
   },
   "files": [
     "bin/**/*"
   ],
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   }

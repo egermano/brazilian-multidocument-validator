@@ -28,15 +28,11 @@
     "prepublishOnly": "npm run lint && npm test",
     "preversion": "npm run lint"
   },
-  "git": {
-    "pre-commit": "lint"
-  },
   "devDependencies": {
     "@types/jest": "^22.1.0",
     "@types/node": "^8.0.47",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "@zeit/git-hooks": "^0.1.4",
     "eslint": "^8.31.0",
     "jest": "^25.1.0",
     "typescript": "^3.8.2"

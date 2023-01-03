@@ -43,10 +43,10 @@ describe('CPF/CNPJ validator', () => {
   const DOCS = [].concat(CPFS, CNPJS);
 
   DOCS.forEach((item) => {
-    it(`should return \`${item.assert}\` for Document \`${item.document}\` `, async () => {
+    it(`should return \`${item.assert}\` for Document \`${item.document}\` `, () => {
 
       try {
-        const result = await documentValidator(item.document, true);
+        const result = documentValidator(item.document);
         return expect(item.assert).toBe(result);
       } catch (error) {
         return expect(item.assert).toBe(false);

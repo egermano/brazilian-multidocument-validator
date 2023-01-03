@@ -25,9 +25,9 @@
     "lint": "tslint -c tslint.json -p tsconfig.json -t verbose",
     "test": "jest",
     "start": "tsc -w -p ./tsconfig.json",
-    "prepare": "$npm_execpath build",
-    "prepublishOnly": "$npm_execpath run lint && $npm_execpath test",
-    "preversion": "$npm_execpath run lint"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm test",
+    "preversion": "npm run lint"
   },
   "git": {
     "pre-commit": "lint"

@@ -4,7 +4,7 @@
   "description": "Helper library to validate Brazilians documents as CPF and CNPJ.",
   "main": "bin/multidocument_validator.js",
   "types": "bin/multidocument_validator.d.ts",
-  "repository": "git@github.com:egermano/brazilian-multidocument-validator.git",
+  "repository": "https://github.com/egermano/brazilian-multidocument-validator",
   "bugs": {
     "url": "https://github.com/egermano/brazilian-multidocument-validator/issues"
   },
@@ -18,7 +18,9 @@
     "CNPJ"
   ],
   "license": "Apache-2.0",
-  "private": false,
+  "engines": {
+    "node": ">=14 <=18"
+  },
   "scripts": {
     "build": "tsc -p ./tsconfig.json --declaration",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",

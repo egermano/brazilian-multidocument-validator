@@ -1,5 +1,5 @@
-export function cpfValidator(input: string): Boolean {
-  let cpf = input.replace(/[^\d]+/g, '');
+export function cpfValidator(input: string): boolean {
+  let cpf = input.replace(/[^\d]+/g, "");
 
   while (cpf.length < 11) {
     cpf = `0${cpf}`;
@@ -8,13 +8,13 @@ export function cpfValidator(input: string): Boolean {
   const expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
 
   const a: number[] = [];
-  let b: number = 0;
-  let c: number = 11;
+  let b = 0;
+  let c = 11;
   for (let i = 0; i < 11; i = i + 1) {
     a[i] = parseInt(cpf.charAt(i), 10);
     if (i < 9) {
       c = c - 1;
-      b = b + (a[i] * c);
+      b = b + a[i] * c;
     }
   }
 
@@ -30,7 +30,7 @@ export function cpfValidator(input: string): Boolean {
   c = 11;
 
   for (let y = 0; y < 10; y = y + 1) {
-    b = b + (a[y] * c);
+    b = b + a[y] * c;
     c = c - 1;
   }
 
@@ -44,7 +44,11 @@ export function cpfValidator(input: string): Boolean {
 
   let result = true;
 
-  if ((cpf.charAt(9) !== a[9].toString()) || (cpf.charAt(10) !== a[10].toString()) || cpf.match(expReg)) {
+  if (
+    cpf.charAt(9) !== a[9].toString() ||
+    cpf.charAt(10) !== a[10].toString() ||
+    cpf.match(expReg)
+  ) {
     result = false;
   }
 
@@ -52,51 +56,51 @@ export function cpfValidator(input: string): Boolean {
     return true;
   }
   return false;
-
 }
 
-export function cnpjValidator(input: string): Boolean {
-  const cnpj = input.replace(/[^\d]+/g, '');
-
-  if (cnpj === '') {
-    return false;
-  }
-
-  if (cnpj.length !== 14) {
-    return false;
-  }
-
+const cnpjReplace = (input) => input.replace(/[^\d]+/g, "");
+const cnpjLengthValidation = (input) =>
+  input === "" && input.length === 14 ? input : false;
+const linha10 = (input) => {
   // LINHA 10 - Elimina CNPJs invalidos conhecidos
-  if (cnpj === '00000000000000' ||
-    cnpj === '11111111111111' ||
-    cnpj === '22222222222222' ||
-    cnpj === '33333333333333' ||
-    cnpj === '44444444444444' ||
-    cnpj === '55555555555555' ||
-    cnpj === '66666666666666' ||
-    cnpj === '77777777777777' ||
-    cnpj === '88888888888888' ||
-    cnpj === '99999999999999') {
-    return false;
+  const valid = Array(10)
+    .fill("")
+    .every((value, index) => {
+      const invalidCnpj = Array(14)
+        .fill("")
+        .map(() => index)
+        .join("");
+      return input !== invalidCnpj;
+    });
+
+  if (valid) {
+    return input;
   }
+
+  return false;
+};
+
+export function cnpjValidator(input: string): boolean {
+  let cnpj = cnpjReplace(input);
+  cnpj = cnpjLengthValidation(cnpj);
+  cnpj = linha10(input);
 
   let tamanho: number = cnpj.length - 2;
   let numeros: string = cnpj.substring(0, tamanho);
   const digitos: string = cnpj.substring(tamanho);
-  let soma: number = 0;
+  let soma = 0;
   let pos: number = tamanho - 7;
 
   for (let i = tamanho; i >= 1; i = i - 1) {
-    soma = soma + (parseInt(numeros.charAt(tamanho - i), 10) * pos);
+    soma = soma + parseInt(numeros.charAt(tamanho - i), 10) * pos;
     pos = pos - 1;
 
     if (pos < 2) {
       pos = 9;
     }
-
   }
 
-  let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
 
   if (resultado !== parseInt(digitos.charAt(0), 10)) {
     return false;
@@ -108,7 +112,7 @@ export function cnpjValidator(input: string): Boolean {
   pos = tamanho - 7;
 
   for (let i = tamanho; i >= 1; i = i - 1) {
-    soma = soma + (parseInt(numeros.charAt(tamanho - i), 10) * pos);
+    soma = soma + parseInt(numeros.charAt(tamanho - i), 10) * pos;
     pos = pos - 1;
 
     if (pos < 2) {
@@ -116,7 +120,7 @@ export function cnpjValidator(input: string): Boolean {
     }
   }
 
-  resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
 
   if (resultado !== parseInt(digitos.charAt(1), 10)) {
     return false;
@@ -125,22 +129,10 @@ export function cnpjValidator(input: string): Boolean {
   return true;
 }
 
-export function documentValidator(input: string): Boolean {
-  const doc = input.replace(/[^\d]+/g, '');
-
+export function documentValidator(input: string): boolean {
+  const doc = input.replace(/[^\d]+/g, "");
   if (doc.length <= 11) {
     return cpfValidator(doc);
   }
   return cnpjValidator(doc);
-
-}
-
-export function documentValidatorProm(input: string): Promise<String> {
-  return new Promise((resolve, reject) => {
-    if (documentValidator(input)) {
-      resolve(input);
-    } else {
-      reject();
-    }
-  });
 }

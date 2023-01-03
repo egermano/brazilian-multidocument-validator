@@ -1,38 +1,30 @@
 # Brazilian Document Validator
 A Node.js module that validate brazilian documents as CPF and CPNJ.
 
+🇧🇷 Modulo em Node.js para validação de documento CPF e CNPJ.
+
 [![Build Status](https://travis-ci.org/egermano/brazilian-multidocument-validator.svg?branch=master)](https://travis-ci.org/egermano/brazilian-multidocument-validator)
+![Node.js](https://github.com/egermano/brazilian-multidocument-validator/workflows/Node.js/badge.svg)
 
 ## Installation 
 ```sh
-npm install br-doc-validator --save
+npm add br-doc-validator
+# or
 yarn add br-doc-validator
 ```
 
 ## Usage
-### Javascript
-```javascript
-var validator = require('br-doc-validator');
-let document = '00000000353';
-validator.documentValidatorProm(document).then((result) => {
-    console.log('valid');
-}, (err) => {
-    console.log('invalid');
-});
-```
-```sh
-Output should be 'valid'
-```
 
-### TypeScript
-```typescript
-import { documentValidatorProm as validator } from 'br-doc-validator';
-let document = '00000000000353';
-validator(document).then((result) => {
+```javascript
+const validator = require('br-doc-validator');
+const document = '00000000353';
+const result = validator.documentValidator(document);
+
+if(result) {
     console.log('valid');
-}, (err) => {
+} else {
     console.log('invalid');
-});
+}
 ```
 ```sh
 Output should be 'valid'
@@ -41,5 +33,4 @@ Output should be 'valid'
 ## Test 
 ```sh
 npm run test
-yarn test
 ```

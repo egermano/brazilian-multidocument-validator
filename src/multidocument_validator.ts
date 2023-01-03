@@ -1,4 +1,4 @@
-export function cpfValidator(input: string): Boolean {
+export function cpfValidator(input: string): boolean {
   let cpf = input.replace(/[^\d]+/g, '');
 
   while (cpf.length < 11) {
@@ -8,8 +8,8 @@ export function cpfValidator(input: string): Boolean {
   const expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
 
   const a: number[] = [];
-  let b: number = 0;
-  let c: number = 11;
+  let b = 0;
+  let c = 11;
   for (let i = 0; i < 11; i = i + 1) {
     a[i] = parseInt(cpf.charAt(i), 10);
     if (i < 9) {
@@ -60,7 +60,7 @@ const cnpjLengthValidation = input => input === '' && input.length === 14 ? inpu
 const linha10 = (input) => {
   // LINHA 10 - Elimina CNPJs invalidos conhecidos
   const valid = Array(10).fill('').every((value, index) => {
-    const invalidCnpj = Array(14).fill('').map(c => index).join('');
+    const invalidCnpj = Array(14).fill('').map(() => index).join('');
     return input !== invalidCnpj;
   });
 
@@ -71,7 +71,7 @@ const linha10 = (input) => {
   return false;
 };
 
-export function cnpjValidator(input: string): Boolean {
+export function cnpjValidator(input: string): boolean {
   let cnpj = cnpjReplace(input);
   cnpj = cnpjLengthValidation(cnpj);
   cnpj = linha10(input);
@@ -79,7 +79,7 @@ export function cnpjValidator(input: string): Boolean {
   let tamanho: number = cnpj.length - 2;
   let numeros: string = cnpj.substring(0, tamanho);
   const digitos: string = cnpj.substring(tamanho);
-  let soma: number = 0;
+  let soma = 0;
   let pos: number = tamanho - 7;
 
   for (let i = tamanho; i >= 1; i = i - 1) {
@@ -121,7 +121,7 @@ export function cnpjValidator(input: string): Boolean {
   return true;
 }
 
-export function documentValidator(input: string, promise: boolean = false): Boolean | Promise<String> {
+export function documentValidator(input: string, promise = false): boolean | Promise<string> {
   const doc = input.replace(/[^\d]+/g, '');
   if (promise) {
     if (doc.length <= 11) {

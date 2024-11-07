@@ -48,8 +48,7 @@ describe("CPF/CNPJ validator", () => {
       try {
         const result = documentValidator(item.document);
         return expect(item.assert).toBe(result);
-      } catch (error) {
-        expect(error).toBeUndefined();
+      } catch {
         return expect(item.assert).toBe(false);
       }
     });

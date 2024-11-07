@@ -58,10 +58,10 @@ export function cpfValidator(input: string): boolean {
   return false;
 }
 
-const cnpjReplace = (input) => input.replace(/[^\d]+/g, "");
-const cnpjLengthValidation = (input) =>
+const cnpjReplace = (input: string) => input.replace(/[^\d]+/g, "");
+const cnpjLengthValidation = (input: string) =>
   input === "" && input.length === 14 ? input : false;
-const linha10 = (input) => {
+const linha10 = (input: string) => {
   // LINHA 10 - Elimina CNPJs invalidos conhecidos
   const valid = Array(10)
     .fill("")
@@ -81,13 +81,13 @@ const linha10 = (input) => {
 };
 
 export function cnpjValidator(input: string): boolean {
-  let cnpj = cnpjReplace(input);
+  let cnpj: string | boolean = cnpjReplace(input);
   cnpj = cnpjLengthValidation(cnpj);
   cnpj = linha10(input);
 
-  let tamanho: number = cnpj.length - 2;
-  let numeros: string = cnpj.substring(0, tamanho);
-  const digitos: string = cnpj.substring(tamanho);
+  let tamanho: number = (cnpj as string).length - 2;
+  let numeros: string = (cnpj as string).substring(0, tamanho);
+  const digitos: string = (cnpj as string).substring(tamanho);
   let soma = 0;
   let pos: number = tamanho - 7;
 
@@ -107,7 +107,7 @@ export function cnpjValidator(input: string): boolean {
   }
 
   tamanho = tamanho + 1;
-  numeros = cnpj.substring(0, tamanho);
+  numeros = (cnpj as string).substring(0, tamanho);
   soma = 0;
   pos = tamanho - 7;
 
@@ -129,7 +129,7 @@ export function cnpjValidator(input: string): boolean {
   return true;
 }
 
-export function documentValidator(input: string): boolean {
+export default function documentValidator(input: string): boolean {
   const doc = input.replace(/[^\d]+/g, "");
   if (doc.length <= 11) {
     return cpfValidator(doc);

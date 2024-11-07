@@ -1,4 +1,4 @@
-import { documentValidator } from "./multidocument_validator";
+import documentValidator from "./multidocument_validator";
 
 describe("CPF/CNPJ validator", () => {
   const CPFS = [
@@ -48,7 +48,7 @@ describe("CPF/CNPJ validator", () => {
       try {
         const result = documentValidator(item.document);
         return expect(item.assert).toBe(result);
-      } catch (error) {
+      } catch {
         return expect(item.assert).toBe(false);
       }
     });

@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
     "outDir": "bin",
-    "declaration": true,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "sourceMap": true,
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2015"]
+    "target": "es2020",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["es2020"]
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.spec.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.js"],
+  "exclude": [
+    "node_modules",
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "ts-node": {
+    "esm": true
+  }
 }

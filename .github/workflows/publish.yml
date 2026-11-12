@@ -1,11 +1,13 @@
 # Publicação: disparada quando uma Release do GitHub é publicada (ou seja,
 # quando a PR de release criada pelo release-please é aprovada/mergada).
 # Publica no npm com provenance e anexa o tarball à Release do repositório.
+# workflow_dispatch permite republicar manualmente (ex.: se uma run falhou).
 name: Publish
 
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,7 +24,10 @@ jobs:
           cache: npm
           registry-url: https://registry.npmjs.org/
 
-      # npm ci executa o build via script prepare.
+      # npm ci também executa o build via script prepare.
+      - name: Install
+        run: npm ci
+
       - name: Lint
         run: npm run lint
       - name: Test
@@ -35,10 +40,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # A tag é derivada da versão do package.json para funcionar tanto no
+      # evento de release quanto em execuções manuais via workflow_dispatch.
       - name: Attach tarball to GitHub Release
         run: |
+          TAG="v$(node -p "require('./package.json').version")"
           mkdir -p dist
           npm pack --ignore-scripts --pack-destination dist
-          gh release upload "$GITHUB_REF_NAME" dist/*.tgz --clobber
+          gh release upload "$TAG" dist/*.tgz --clobber
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

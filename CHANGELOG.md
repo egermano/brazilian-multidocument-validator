@@ -1,11 +1,13 @@
 # Changelog
 
-## [Não publicado]
+## [Unreleased]
 
 ### Adicionado
 
 - Suporte ao CNPJ alfanumérico (nova regra da Receita Federal, julho de 2026),
   incluindo máscara `XX.XXX.XXX/XXXX-DD` e normalização de letras minúsculas.
+- Automação de release: merge em `master` abre a PR de versão (release-please)
+  e a publicação da Release publica no npm com provenance e tarball anexado.
 - `npm run test:package` — valida o tarball publicado em um diretório limpo
   (importação ESM, declarações TypeScript e ausência de peer dependencies).
 - `npm run benchmark` — medição reproduzível de tempo por cenário.

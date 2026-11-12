@@ -1,0 +1,44 @@
+# Publicação: disparada quando uma Release do GitHub é publicada (ou seja,
+# quando a PR de release criada pelo release-please é aprovada/mergada).
+# Publica no npm com provenance e anexa o tarball à Release do repositório.
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org/
+
+      # npm ci executa o build via script prepare.
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test -- --runInBand
+      - name: Test package
+        run: npm run test:package
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Attach tarball to GitHub Release
+        run: |
+          mkdir -p dist
+          npm pack --ignore-scripts --pack-destination dist
+          gh release upload "$GITHUB_REF_NAME" dist/*.tgz --clobber
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

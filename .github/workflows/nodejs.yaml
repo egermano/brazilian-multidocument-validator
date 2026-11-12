@@ -11,12 +11,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -29,3 +29,6 @@ jobs:
         run: npm test -- --runInBand
       - name: Test package
         run: npm run test:package
+      - name: Coverage
+        if: matrix.node-version == '24.x'
+        run: npm run test:coverage

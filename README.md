@@ -4,11 +4,29 @@ Biblioteca Node.js para validação de CPF e CNPJ — incluindo o novo **CNPJ al
 
 ## Instalação
 
+### npm (recomendado)
+
 ```sh
 npm add br-doc-validator
+# ou
+yarn add br-doc-validator
 ```
 
-Compatibilidade: Node.js 18 ou superior, pacote ESM (`import`). A biblioteca publica JavaScript compilado e declarações de tipos — o TypeScript **não** é exigido no projeto consumidor.
+### Direto do GitHub
+
+Instalando a partir de uma release específica (o tarball `br-doc-validator-x.y.z.tgz` é anexado a cada release):
+
+```sh
+npm add egermano/brazilian-multidocument-validator#v3.0.0
+```
+
+Ou baixando o tarball da [página de releases](https://github.com/egermano/brazilian-multidocument-validator/releases):
+
+```sh
+npm add ./br-doc-validator-4.0.0.tgz
+```
+
+Compatibilidade: Node.js 22 ou superior (versões ativas: 22, 24 e 26), pacote ESM (`import`). A biblioteca publica JavaScript compilado e declarações de tipos — o TypeScript **não** é exigido no projeto consumidor.
 
 ## Uso
 
@@ -94,6 +112,34 @@ npm run build
 ## Contribuição
 
 Issues e pull requests são bem-vindos em [egermano/brazilian-multidocument-validator](https://github.com/egermano/brazilian-multidocument-validator). Alterações de comportamento devem vir acompanhadas de testes.
+
+### Processo de release (automatizado)
+
+A publicação é acionada a partir do merge em `master` — não há publicação manual:
+
+```text
+merge em master
+  └─ release-please abre a PR de release
+       (bump de versão no package.json + package-lock.json,
+        CHANGELOG.md atualizado com os commits desde a última tag)
+  └─ aprovar/mergar a PR de release
+       └─ tag vX.Y.Z + Release criadas no GitHub
+            └─ workflow Publish dispara automaticamente:
+                 lint + testes + teste de pacote
+                 npm publish (com provenance)
+                 tarball anexado à Release do repositório
+```
+
+Regras do fluxo:
+
+- **Commits semânticos definem a versão.** `feat:` bumpa minor, `fix:` patch,
+  `feat!:`/`BREAKING CHANGE:` major, qualquer outra coisa não gera release.
+  Título da PR mergeada também é usado (ex.: `feat!: suporte a CNPJ alfanumérico`).
+- **Secret `NPM_TOKEN`** (token npm do tipo *Automation*) é necessário em
+  *Settings → Secrets and variables → Actions* para o publish funcionar.
+- A seção `[Unreleased]` do `CHANGELOG.md` não é movida automaticamente — se
+  houver anotações manuais lá, mova-as para a seção da nova versão dentro da
+  PR de release antes do merge.
 
 ## Licença
 

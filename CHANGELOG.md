@@ -1,15 +1,18 @@
 # Changelog
 
-## [Não publicado]
+## [Unreleased]
 
 ### Adicionado
 
 - Suporte ao CNPJ alfanumérico (nova regra da Receita Federal, julho de 2026),
   incluindo máscara `XX.XXX.XXX/XXXX-DD` e normalização de letras minúsculas.
+- Automação de release: merge em `master` abre a PR de versão (release-please)
+  e a publicação da Release publica no npm com provenance e tarball anexado.
 - `npm run test:package` — valida o tarball publicado em um diretório limpo
   (importação ESM, declarações TypeScript e ausência de peer dependencies).
 - `npm run benchmark` — medição reproduzível de tempo por cenário.
-- Workflow de CI em pull requests, com cache do npm e Node 18/20/22/24.
+- Workflow de CI em pull requests, com cache do npm e versões ativas do Node
+  (22/24/26).
 
 ### Corrigido
 
@@ -25,6 +28,8 @@
   compilado e não exige o compilador no projeto consumidor.
 - Cobertura de testes deixou de ser coletada por padrão (`npm test` é mais
   rápido); use `npm run test:coverage`.
+- Node.js 18 e 20 chegaram ao fim da vida útil e deixaram de ser suportados;
+  o requisito mínimo agora é Node 22 (`engines.node: >=22`).
 
 ## [3.0.0] e anteriores
 

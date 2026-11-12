@@ -1,0 +1,25 @@
+# Fluxo de release: merge em master abre a PR de release (bump de versão +
+# changelog). O merge dessa PR cria a tag e a Release no GitHub, que dispara
+# o workflow de publicação (publish.yml).
+name: Release
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

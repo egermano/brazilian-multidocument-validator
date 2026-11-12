@@ -1,6 +1,8 @@
 src
+scripts
+docs
 tsconfig.json
-tslint.json
-.prettierrc
+eslint.config.js
+jest.config.cjs
+.github
 .vscode
-.travis

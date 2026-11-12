@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [master]
   pull_request:
 
 jobs:
@@ -19,7 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-      # npm ci já executa o build via script prepare; a CI não repete o passo.
+      # npm ci também executa o build via script prepare.
+      - name: Install
+        run: npm ci
       - name: Lint
         run: npm run lint
       - name: Test

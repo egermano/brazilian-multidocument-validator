@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [4.0.0](https://github.com/egermano/brazilian-multidocument-validator/compare/v3.0.0...v4.0.0) (2026-11-12)
 
 ### Adicionado
 
@@ -21,15 +21,15 @@
 
 ### Alterado
 
-- `documentValidator` não remove mais silenciosamente letras e símbolos no
-  caminho de CPF: entradas como `"texto77325121890"` e `"A00000000353"`, antes
-  aceitas como CPF, agora retornam `false`.
+- **BREAKING CHANGE**: `documentValidator` não remove mais silenciosamente letras
+  e símbolos no caminho de CPF: entradas como `"texto77325121890"` e
+  `"A00000000353"`, antes aceitas como CPF, agora retornam `false`.
 - TypeScript deixou de ser `peerDependency`; a biblioteca publica JavaScript
   compilado e não exige o compilador no projeto consumidor.
 - Cobertura de testes deixou de ser coletada por padrão (`npm test` é mais
   rápido); use `npm run test:coverage`.
-- Node.js 18 e 20 chegaram ao fim da vida útil e deixaram de ser suportados;
-  o requisito mínimo agora é Node 22 (`engines.node: >=22`).
+- **BREAKING CHANGE**: Node.js 18 e 20 chegaram ao fim da vida útil e deixaram
+  de ser suportados; o requisito mínimo agora é Node 22 (`engines.node: >=22`).
 
 ## [3.0.0] e anteriores
 

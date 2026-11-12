@@ -11,7 +11,8 @@
 - `npm run test:package` — valida o tarball publicado em um diretório limpo
   (importação ESM, declarações TypeScript e ausência de peer dependencies).
 - `npm run benchmark` — medição reproduzível de tempo por cenário.
-- Workflow de CI em pull requests, com cache do npm e Node 18/20/22/24.
+- Workflow de CI em pull requests, com cache do npm e versões ativas do Node
+  (22/24/26).
 
 ### Corrigido
 
@@ -27,6 +28,8 @@
   compilado e não exige o compilador no projeto consumidor.
 - Cobertura de testes deixou de ser coletada por padrão (`npm test` é mais
   rápido); use `npm run test:coverage`.
+- Node.js 18 e 20 chegaram ao fim da vida útil e deixaram de ser suportados;
+  o requisito mínimo agora é Node 22 (`engines.node: >=22`).
 
 ## [3.0.0] e anteriores
 

@@ -26,7 +26,7 @@ Ou baixando o tarball da [página de releases](https://github.com/egermano/brazi
 npm add ./br-doc-validator-4.0.0.tgz
 ```
 
-Compatibilidade: Node.js 18 ou superior, pacote ESM (`import`). A biblioteca publica JavaScript compilado e declarações de tipos — o TypeScript **não** é exigido no projeto consumidor.
+Compatibilidade: Node.js 22 ou superior (versões ativas: 22, 24 e 26), pacote ESM (`import`). A biblioteca publica JavaScript compilado e declarações de tipos — o TypeScript **não** é exigido no projeto consumidor.
 
 ## Uso
 

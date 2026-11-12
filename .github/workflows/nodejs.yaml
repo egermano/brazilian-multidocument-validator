@@ -1,6 +1,9 @@
-name: Node.js
+name: CI
 
-on: [push]
+on:
+  push:
+    branches: [master]
+  pull_request:
 
 jobs:
   build:
@@ -8,17 +11,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x, 20.x, 22.x, 24.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v5
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install, build, and test
-        run: |
-          npm ci
-          npm run lint
-          npm run build
-          npm run test
+          cache: npm
+      # npm ci também executa o build via script prepare.
+      - name: Install
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test -- --runInBand
+      - name: Test package
+        run: npm run test:package

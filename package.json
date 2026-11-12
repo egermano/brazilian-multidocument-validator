@@ -26,6 +26,9 @@
     "build": "tsc -p ./tsconfig.json --declaration",
     "lint": "eslint",
     "test": "jest",
+    "test:coverage": "jest --coverage --runInBand",
+    "test:package": "node scripts/check-package.mjs",
+    "benchmark": "node scripts/benchmark.mjs",
     "start": "tsc -w -p ./tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint && npm test",
@@ -42,9 +45,6 @@
     "ts-jest": "^29.0.3",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.13.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.6.3"
   },
   "files": [
     "bin/**/*"
